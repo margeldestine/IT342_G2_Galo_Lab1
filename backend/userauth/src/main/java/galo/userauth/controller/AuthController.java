@@ -23,13 +23,5 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody User loginRequest) {
-        try {
-            String response = authService.authenticate(loginRequest.getEmail(), loginRequest.getPassword());
-            return ResponseEntity.ok(response); // 200 OK
-        } catch (Exception e) {
-            return ResponseEntity.status(401).body(e.getMessage());
-        }
-    }
+
 }

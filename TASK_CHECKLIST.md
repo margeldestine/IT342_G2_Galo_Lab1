@@ -1,36 +1,15 @@
-\# TASK CHECKLIST
+## DONE
+- Repository created and cloned
+- User registration API 
+- Password encryption (BCrypt) 
+- Database integration (H2) 
 
+## IN-PROGRESS
+- User login API
+- Web UI pages (Register/Login)
+- Backend development (Spring Boot)
+- Frontend development (ReactJS)
 
-
-\## DONE
-
-\- Repository created and cloned
-
-
-
-\## IN-PROGRESS
-
-\- Backend development (Spring Boot)
-
-\- Frontend development (ReactJS)
-
-
-
-\## TODO
-
-\- User registration API
-
-\- User login API
-
-\- Password encryption (BCrypt)
-
-\- Protected user profile API
-
-\- MySQL database integration
-
-\- Web UI pages
-
-\- Documentation update
-
-
-
+## TODO
+- Protected user profile API (/api/user/me)
+- Documentation update (FRS PDF & Screenshots)

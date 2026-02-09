@@ -6,20 +6,24 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 public class SecurityConfig {
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable() // disable CSRF for H2 console
-                .headers().frameOptions().disable() // allow H2 console in frames
-                .and()
-                .authorizeHttpRequests()
-                .requestMatchers("/h2-console/**").permitAll() // allow H2 console
-                .anyRequest().authenticated() // protect other endpoints
-                .and()
-                .formLogin(); // default login form
+                .csrf(csrf -> csrf.disable()) // Disable CSRF for testing
+                .headers(headers -> headers.frameOptions(frame -> frame.disable())) // For H2 Console
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/h2-console/**").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll() // Ensure this is exactly like this
+                        .anyRequest().authenticated()
+                )
+                // Remove .formLogin() for now to avoid redirects to HTML pages
+                .httpBasic(withDefaults());
 
         return http.build();
     }
