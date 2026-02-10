@@ -23,11 +23,16 @@ public class AuthService {
         return userRepository.save(user);
     }
 
-    public String authenticate(String email, String password) {
-        Optional<User> userOpt = userRepository.findByEmail(email);
-        if (userOpt.isPresent() && passwordEncoder.matches(password, userOpt.get().getPassword())) {
-            return "Login Successful"; // Create session logic
+    public String authenticate(String email, String password) throws Exception {
+        // 1. Find user by email
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new Exception("User not found"));
+
+        // 2. Check if the raw password matches the encoded password in DB
+        if (passwordEncoder.matches(password, user.getPassword())) {
+            return "Login Successful";
+        } else {
+            throw new Exception("Invalid email or password");
         }
-        throw new RuntimeException("Invalid credentials");
     }
 }

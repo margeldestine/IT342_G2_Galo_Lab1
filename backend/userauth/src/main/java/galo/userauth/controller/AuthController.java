@@ -23,5 +23,16 @@ public class AuthController {
         }
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody User loginRequest) {
+        try {
+            // We pass the email and password from the request body
+            String message = authService.authenticate(loginRequest.getEmail(), loginRequest.getPassword());
+            return ResponseEntity.ok(message); // Returns 200 OK
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body(e.getMessage()); // Returns 401 Unauthorized
+        }
+    }
+
 
 }
