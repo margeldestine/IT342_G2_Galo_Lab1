@@ -9,9 +9,9 @@
 - User login API [7025d7c]
 - Protected user profile API (/api/user/me) [a4228fc]
 - Frontend development (ReactJS) [4263291]
+- Web UI pages (Register/Login/Dashboard) [6b87657]
 
 ## IN-PROGRESS
-- Web UI pages (Register/Login/Dashboard)
 
 ## TODO
 - Mobile application development 
