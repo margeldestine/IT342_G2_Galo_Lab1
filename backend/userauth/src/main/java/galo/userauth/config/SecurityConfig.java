@@ -5,25 +5,24 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
-import static org.springframework.security.config.Customizer.withDefaults;
+import java.util.Arrays;
 
 @Configuration
 public class SecurityConfig {
 
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Disable CSRF for testing
-                .headers(headers -> headers.frameOptions(frame -> frame.disable())) // For H2 Console
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/h2-console/**").permitAll()
-                        .requestMatchers("/api/auth/**").permitAll() // Ensure this is exactly like this
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/user/me").permitAll()
                         .anyRequest().authenticated()
-                )
-                // Remove .formLogin() for now to avoid redirects to HTML pages
-                .httpBasic(withDefaults());
+                );
 
         return http.build();
     }

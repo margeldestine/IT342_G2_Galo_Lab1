@@ -1,6 +1,6 @@
 package galo.userauth.controller;
 
-import galo.userauth.model.User;
+import galo.userauth.dto.*;
 import galo.userauth.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,31 +8,35 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:3000") // To allow your React app to talk to it
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
 
     @Autowired
     private AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody User user) {
+    public ResponseEntity<ApiResponse> register(@RequestBody RegisterRequest registrationData) {
         try {
-            return ResponseEntity.status(201).body(authService.register(user)); // 201 Created
+            authService.register(registrationData);
+            return ResponseEntity.status(201).body(new ApiResponse(true, "User registered successfully"));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(new ApiResponse(false, e.getMessage()));
         }
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody User loginRequest) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginData) {
         try {
-            // We pass the email and password from the request body
-            String message = authService.authenticate(loginRequest.getEmail(), loginRequest.getPassword());
-            return ResponseEntity.ok(message); // Returns 200 OK
+
+            LoginResponse response = authService.authenticate(loginData);
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(401).body(e.getMessage()); // Returns 401 Unauthorized
+            return ResponseEntity.status(401).body(e.getMessage());
         }
     }
 
-
+    @PostMapping("/logout")
+    public ResponseEntity<ApiResponse> logout() {
+        return ResponseEntity.ok(new ApiResponse(true, "Logged out successfully"));
+    }
 }
