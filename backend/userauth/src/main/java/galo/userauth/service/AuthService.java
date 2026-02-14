@@ -1,11 +1,12 @@
 package galo.userauth.service;
 
+import galo.userauth.dto.*;
 import galo.userauth.model.User;
 import galo.userauth.repository.UserRepository;
+import galo.userauth.security.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
 
 @Service
 public class AuthService {
@@ -13,21 +14,39 @@ public class AuthService {
     @Autowired
     private UserRepository userRepository;
 
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
-    public User register(User user) {
-        if (userRepository.existsByEmail(user.getEmail())) {
-            throw new RuntimeException("Email already taken"); // Matches Activity Diagram
+    @Autowired
+    private JwtProvider jwtProvider;
+
+    public User register(RegisterRequest req) throws Exception {
+        if (userRepository.existsByEmail(req.getEmail())) {
+            throw new Exception("Email already in use.");
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword())); // Hashes password
+
+        User user = new User();
+        user.setUsername(req.getUsername());
+        user.setEmail(req.getEmail());
+        user.setFirstname(req.getFirstname());
+        user.setLastname(req.getLastname());
+        user.setPassword(passwordEncoder.encode(req.getPassword()));
+
         return userRepository.save(user);
     }
 
-    public String authenticate(String email, String password) {
-        Optional<User> userOpt = userRepository.findByEmail(email);
-        if (userOpt.isPresent() && passwordEncoder.matches(password, userOpt.get().getPassword())) {
-            return "Login Successful"; // Create session logic
+    public LoginResponse authenticate(LoginRequest req) throws Exception {
+        User user = userRepository.findByEmail(req.getEmail())
+                .orElseThrow(() -> new Exception("Invalid email or password."));
+
+        if (!passwordEncoder.matches(req.getPassword(), user.getPassword())) {
+            throw new Exception("Invalid email or password.");
         }
-        throw new RuntimeException("Invalid credentials");
+
+        String token = jwtProvider.generateToken(user);
+        return new LoginResponse(token);
+    }
+
+    public void logout(Long userId) {
     }
 }
