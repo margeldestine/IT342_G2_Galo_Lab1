@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import '../styles/auth.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -10,6 +11,7 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setError('');
         try {
             const response = await api.post('/auth/login', { email, password });
             const token = response.data.accessToken;
@@ -24,27 +26,31 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <form onSubmit={handleLogin}>
+        <div className="auth-container">
+            <form className="auth-card" onSubmit={handleLogin}>
+                <h2>Login</h2>
+                {error && <div className="error-box">{error}</div>}
                 <input 
+                    className="auth-input"
                     type="email" 
                     placeholder="Email" 
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)} 
                     required 
-                /><br/>
+                />
                 <input 
+                    className="auth-input"
                     type="password" 
                     placeholder="Password" 
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)} 
                     required 
-                /><br/>
-                <button type="submit">Login</button>
+                />
+                <button className="btn btn-primary" style={{width: '100%', marginTop: '10px'}} type="submit">Login</button>
+                <p style={{fontSize: '14px', marginTop: '15px'}}>
+                    Don't have an account? <span onClick={() => navigate('/register')} style={{color: '#ff6b9d', cursor: 'pointer', fontWeight: '600'}}>Register here</span>
+                </p>
             </form>
-            <p>Don't have an account? <a href="/register">Register here</a></p>
         </div>
     );
 };

@@ -8,10 +8,10 @@
 - Database integration (H2) [c0aeaa1]
 - User login API [7025d7c]
 - Protected user profile API (/api/user/me) [a4228fc]
+- Frontend development (ReactJS) [4263291]
 
 ## IN-PROGRESS
 - Web UI pages (Register/Login/Dashboard)
-- Frontend development (ReactJS)
 
 ## TODO
 - Mobile application development 

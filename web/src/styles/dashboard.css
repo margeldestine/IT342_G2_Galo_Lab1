@@ -1,0 +1,280 @@
+/* Dashboard Container */
+.dashboard-container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    background: linear-gradient(135deg, #ffd6e8 0%, #fff4e6 50%, #ffe9a8 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 192, 203, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+    width: 280px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 0 24px 24px 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 8px 0 32px rgba(255, 182, 193, 0.25), 4px 0 16px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 2;
+    margin: 20px 0 20px 0;
+}
+
+.dashboard-title {
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, #ff6b9d 0%, #ffa500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-align: center;
+}
+
+.sidebar-btn {
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-btn-profile {
+    background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+}
+
+.sidebar-btn-profile:hover {
+    background: linear-gradient(135deg, #ff5a8c 0%, #ff7a9a 100%);
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+    transform: translateX(5px);
+}
+
+.sidebar-btn-logout {
+    background: linear-gradient(135deg, #ffe4a0 0%, #ffd6b8 100%);
+    color: #ff6b9d;
+    box-shadow: 0 4px 15px rgba(255, 214, 184, 0.3);
+}
+
+.sidebar-btn-logout:hover {
+    background: linear-gradient(135deg, #ffd88f 0%, #ffcca7 100%);
+    box-shadow: 0 6px 20px rgba(255, 200, 157, 0.4);
+    transform: translateX(5px);
+}
+
+/* Main Content */
+.dashboard-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+}
+
+.welcome-message {
+    text-align: center;
+}
+
+.welcome-message h1 {
+    font-size: 3rem;
+    background: linear-gradient(135deg, #ff6b9d 0%, #ffa500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.welcome-message p {
+    font-size: 1.2rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+    
+    .dashboard-sidebar {
+        width: 100%;
+        padding: 20px;
+        border-radius: 0 0 24px 24px;
+        margin: 0;
+        box-shadow: 0 8px 32px rgba(255, 182, 193, 0.25), 0 4px 16px rgba(0, 0, 0, 0.08);
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .dashboard-title {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .sidebar-btn {
+        flex: 1;
+        min-width: 120px;
+    }
+    
+    .sidebar-btn-logout {
+        margin-top: 0;
+    }
+    
+    .welcome-message h1 {
+        font-size: 2rem;
+    }
+    
+    .welcome-message p {
+        font-size: 1rem;
+    }
+}
+
+/* Logout Confirmation Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-card {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(255, 182, 193, 0.3), 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 420px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, #ff6b9d 0%, #ffa500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-align: center;
+}
+
+.modal-message {
+    font-size: 1.05rem;
+    color: #6b7280;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 14px 24px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+}
+
+.modal-btn-cancel {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #ffb3c6;
+    color: #ff6b9d;
+}
+
+.modal-btn-cancel:hover {
+    background: rgba(255, 179, 198, 0.15);
+    border-color: #ff8fab;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 157, 0.15);
+}
+
+.modal-btn-confirm {
+    background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+}
+
+.modal-btn-confirm:hover {
+    background: linear-gradient(135deg, #ff5a8c 0%, #ff7a9a 100%);
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+    .modal-card {
+        padding: 30px 25px;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+    }
+}
