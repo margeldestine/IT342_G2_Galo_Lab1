@@ -7,11 +7,11 @@
 - Password encryption (BCrypt) [c0aeaa1]
 - Database integration (H2) [c0aeaa1]
 - User login API [7025d7c]
+- Protected user profile API (/api/user/me) [a4228fc]
 
 ## IN-PROGRESS
-- Protected user profile API (/api/user/me)
-
-## TODO
 - Web UI pages (Register/Login/Dashboard)
 - Frontend development (ReactJS)
+
+## TODO
 - Mobile application development 

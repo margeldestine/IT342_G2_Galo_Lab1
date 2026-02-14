@@ -18,9 +18,9 @@ public class AuthController {
     public ResponseEntity<ApiResponse> register(@RequestBody RegisterRequest registrationData) {
         try {
             authService.register(registrationData);
-            return ResponseEntity.status(201).body(new ApiResponse(true, "User registered successfully"));
+            return ResponseEntity.status(201).body(new ApiResponse(true, "Registration successful!"));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new ApiResponse(false, e.getMessage()));
+            return ResponseEntity.status(400).body(new ApiResponse(false, e.getMessage()));
         }
     }
 

@@ -21,8 +21,12 @@ public class AuthService {
     private JwtProvider jwtProvider;
 
     public User register(RegisterRequest req) throws Exception {
+        if (userRepository.existsByUsername(req.getUsername())) {
+            throw new Exception("Username '" + req.getUsername() + "' is already taken.");
+        }
+
         if (userRepository.existsByEmail(req.getEmail())) {
-            throw new Exception("Email already in use.");
+            throw new Exception("Email is already registered.");
         }
 
         User user = new User();
