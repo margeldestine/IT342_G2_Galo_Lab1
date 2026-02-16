@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 public class AuthController {
 
     @Autowired
@@ -31,7 +32,7 @@ public class AuthController {
             LoginResponse response = authService.authenticate(loginData);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(401).body(e.getMessage());
+            return ResponseEntity.status(401).body(new ApiResponse(false, e.getMessage()));
         }
     }
 
