@@ -29,12 +29,20 @@ public class AuthService {
             throw new Exception("Email is already registered.");
         }
 
+        String password = req.getPassword();
+        String passwordRegex = "^(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$";
+
+        if (password == null || !password.matches(passwordRegex)) {
+            throw new Exception("Password must be at least 8 characters long and contain at least one number and one special character.");
+        }
+
         User user = new User();
         user.setUsername(req.getUsername());
         user.setEmail(req.getEmail());
         user.setFirstname(req.getFirstname());
         user.setLastname(req.getLastname());
-        user.setPassword(passwordEncoder.encode(req.getPassword()));
+
+        user.setPassword(passwordEncoder.encode(password));
 
         return userRepository.save(user);
     }
