@@ -2,7 +2,7 @@
 
 ## DONE
 - Repository created and cloned [c6990ae]
-- Documentation update (FRS PDF & Screenshots) [c6990ae]
+- Documentation update (FRS PDF & Screenshots) [168d767]
 - User registration API [c0aeaa1]
 - Password encryption (BCrypt) [c0aeaa1]
 - Database integration (H2) [c0aeaa1]
