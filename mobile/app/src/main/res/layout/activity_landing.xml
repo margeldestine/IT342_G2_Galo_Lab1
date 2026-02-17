@@ -1,50 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="#FFF5F5"
-    android:padding="20dp">
+    android:gravity="center">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:background="@android:color/white"
-        android:padding="40dp"
-        android:elevation="4dp">
+        android:layout_margin="30dp"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="12dp"
+        app:cardBackgroundColor="@android:color/white">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="MiniApp"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            android:textColor="#FF8A65"/>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="40dp">
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MiniApp"
+                android:textSize="42sp"
+                android:textStyle="bold"
+                android:textColor="#FF8A65"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"/>
+
+            <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Welcome! Please choose an option."
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp"/>
-
-        <Button
+            android:textSize="16sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="35dp"
+            android:gravity="center"/> <Button
             android:id="@+id/btnGoToRegister"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="Register"
+            android:textSize="18sp"
+            android:textAllCaps="false"
             android:backgroundTint="#F06292"
-            android:layout_marginBottom="10dp"/>
-
-        <Button
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="15dp"
+            app:cornerRadius="15dp"/> <Button
             android:id="@+id/btnGoToLogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="Login"
-            android:backgroundTint="#FFCC80"
-            android:textColor="#D84315"/>
-    </LinearLayout>
-</LinearLayout>
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:backgroundTint="#FFE0B2"
+            android:textColor="#F4511E"
+            app:cornerRadius="15dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

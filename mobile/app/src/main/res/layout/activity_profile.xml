@@ -1,87 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#FFF5F5">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+        app:cardCornerRadius="30dp"
+        app:cardElevation="8dp"
+        android:layout_marginTop="-10dp"
+        app:cardBackgroundColor="@android:color/white">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="User Profile"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="#FF8A65"
-            android:layout_gravity="center"
-            android:layout_marginBottom="30dp" />
-
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="USERNAME" android:textColor="#F06292" android:textSize="12sp" android:textStyle="bold"/>
-        <TextView
-            android:id="@+id/tvProfileUsername"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#FFFFFF"
-            android:hint="Loading..."
-            android:padding="10dp"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="15dp"
-            android:textColor="#333333"/>
-
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="EMAIL" android:textColor="#F06292" android:textSize="12sp" android:textStyle="bold"/>
-        <TextView
-            android:id="@+id/tvProfileEmail"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#FFFFFF"
-            android:hint="Loading..."
-            android:padding="10dp"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="15dp"
-            android:textColor="#333333"/>
-
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="FIRST NAME" android:textColor="#F06292" android:textSize="12sp" android:textStyle="bold"/>
-        <TextView
-            android:id="@+id/tvProfileFirstName"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#FFFFFF"
-            android:hint="Loading..."
-            android:padding="10dp"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="15dp"
-            android:textColor="#333333"/>
-
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="LAST NAME" android:textColor="#F06292" android:textSize="12sp" android:textStyle="bold"/>
-        <TextView
-            android:id="@+id/tvProfileLastName"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#FFFFFF"
-            android:hint="Loading..."
-            android:padding="10dp"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="30dp"
-            android:textColor="#333333"/>
-
-        <Button
-            android:id="@+id/btnDashboard"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Back to Dashboard"
-            android:backgroundTint="#F06292"
-            android:layout_marginBottom="10dp"/>
+            android:orientation="vertical"
+            android:paddingTop="30dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/btnLogout"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#FF8A65"
+                android:layout_marginBottom="15dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/btnDashboard"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="Dashboard"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#F06292"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    app:cornerRadius="20dp" />
+
+                <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="Logout"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#FFE0B2"
+                    android:textColor="#F4511E"
+                    android:textStyle="bold"
+                    app:cornerRadius="20dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Logout"
-            android:backgroundTint="#FFCC80"/>
+            android:layout_margin="20dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="10dp"
+            app:cardBackgroundColor="@android:color/white">
 
-    </LinearLayout>
-</ScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="User Profile"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    android:textColor="#FF8A65"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="30dp" />
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="USERNAME" android:textColor="#F06292" android:textSize="12sp" android:textStyle="bold" android:layout_marginBottom="5dp"/>
+                <TextView
+                    android:id="@+id/tvProfileUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/rounded_input"
+                    android:padding="15dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="15dp"
+                    android:textColor="#333333"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="EMAIL" android:textColor="#F06292" android:textSize="12sp" android:textStyle="bold" android:layout_marginBottom="5dp"/>
+                <TextView
+                    android:id="@+id/tvProfileEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/rounded_input"
+                    android:padding="15dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="15dp"
+                    android:textColor="#333333"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="FIRST NAME" android:textColor="#F06292" android:textSize="12sp" android:textStyle="bold" android:layout_marginBottom="5dp"/>
+                <TextView
+                    android:id="@+id/tvProfileFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/rounded_input"
+                    android:padding="15dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="15dp"
+                    android:textColor="#333333"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="LAST NAME" android:textColor="#F06292" android:textSize="12sp" android:textStyle="bold" android:layout_marginBottom="5dp"/>
+                <TextView
+                    android:id="@+id/tvProfileLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/rounded_input"
+                    android:padding="15dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#333333"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
+</LinearLayout>
