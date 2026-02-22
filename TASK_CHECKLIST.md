@@ -11,6 +11,7 @@
 - Frontend development (ReactJS) [4263291]
 - Web UI pages (Register/Login/Dashboard) [6b87657]
 - Mobile application development [588aaf1]
+- Security & CORS Finalization [6c11095]
 
 ## IN-PROGRESS
 
